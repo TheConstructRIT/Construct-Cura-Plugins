@@ -1,0 +1,8 @@
+{
+    "name": "Construct Settings Sandbox",
+    "author": "The Construct @ RIT",
+    "version": "1.0.0",
+    "api": 7,
+    "description": "Resets settings for users to ensure a consistent start.",
+    "catalog": "constructrit"
+}

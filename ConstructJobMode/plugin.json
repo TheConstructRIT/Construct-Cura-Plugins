@@ -1,0 +1,8 @@
+{
+    "name": "Construct Job Mode",
+    "author": "The Construct @ RIT",
+    "version": "1.0.0",
+    "api": 7,
+    "description": "Sets up starting and stopping job mode for The Construct @ RIT.",
+    "i18n-catalog": "constructrit"
+}

@@ -1,0 +1,9 @@
+# Project specific
+SandboxedSettings/
+state.json
+
+# PyCharm
+.idea/
+
+# Python
+__pycache__/

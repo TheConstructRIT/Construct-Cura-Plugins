@@ -1,0 +1,8 @@
+{
+    "name": "Construct Core",
+    "author": "The Construct @ RIT",
+    "version": "1.0.0",
+    "api": 7,
+    "description": "Core plugin for the plugins use by The Construct @ RIT.",
+    "catalog": "constructrit"
+}

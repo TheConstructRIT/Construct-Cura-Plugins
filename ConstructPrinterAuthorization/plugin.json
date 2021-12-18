@@ -1,0 +1,8 @@
+{
+    "name": "Construct Printer Authorization",
+    "author": "The Construct @ RIT",
+    "version": "1.0.0",
+    "api": 7,
+    "description": "Adds the requirement to authorize changing printers and materials.",
+    "catalog": "constructrit"
+}
