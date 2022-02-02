@@ -4,6 +4,8 @@ Zachary Cook
 Adds the classes used by The Construct @ RIT.
 """
 
+import os
+import site
 from .ConstructRIT import Configuration
 from UM.PluginObject import PluginObject
 
@@ -36,6 +38,7 @@ def register(app):
     app.ConstructRIT = ConstructState()
 
     # Register the ConstructRIT module.
+    site.addsitedir(os.path.realpath(os.path.join(__file__, "..")))
 
     # Return an empty PluginObject.
     # As of Uranium for Cura 4.13, the plugin will fail to load if there is nothing registered.
