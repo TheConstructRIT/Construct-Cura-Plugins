@@ -35,9 +35,14 @@ class SandboxPlugin(Extension):
         self.addMenuItem("Toggle Sandbox", self.toggle) # Technical limitation: can't change menu item text, so the status can't be displayed.
 
         # Replacing the saving method.
+        self.sandboxSettingsPath = os.path.realpath(os.path.join(__file__, "..", "..", "SandboxedSettings"))
         self.originalSavePreferences = Application.savePreferences
         Application.savePreferences = self.savePreferences
         self.replaceSettings()
+
+        # Save the current settings if none exist.
+        if not os.path.exists(self.sandboxSettingsPath):
+            self.storeSettings()
 
     def toggle(self) -> None:
         """Requests toggling the sandbox state.
@@ -84,18 +89,16 @@ class SandboxPlugin(Extension):
         """Updates the stored sandbox settings from the current settings.
         """
 
-        basePath = os.path.realpath(os.path.join(__file__, "..", "..", "SandboxedSettings"))
-        if os.path.exists(basePath):
-            shutil.rmtree(basePath)
-        self.copySettings(Resources.getConfigStoragePath(), basePath)
+        if os.path.exists(self.sandboxSettingsPath):
+            shutil.rmtree(self.sandboxSettingsPath)
+        self.copySettings(Resources.getConfigStoragePath(), self.sandboxSettingsPath)
 
     def replaceSettings(self) -> None:
         """Replaces the user settings with the ones stored for sandboxing.
         """
 
-        basePath = os.path.realpath(os.path.join(__file__, "..", "..", "SandboxedSettings"))
-        if os.path.exists(basePath):
-            self.copySettings(basePath, Resources.getConfigStoragePath())
+        if os.path.exists(self.sandboxSettingsPath):
+            self.copySettings(self.sandboxSettingsPath, Resources.getConfigStoragePath())
 
     def savePreferences(self) -> None:
         """Saves the preferences of the application. Used as a wrapper to store the
