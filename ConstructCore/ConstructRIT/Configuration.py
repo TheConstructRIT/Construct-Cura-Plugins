@@ -56,3 +56,22 @@ REMOVABLE_DRIVE_WHITELIST = [
     "printer_sd",
     "printer_usb",
 ]
+
+
+
+# Read the environment file and determine the bindings.
+import json
+import os
+import sys
+bindings = {}
+environmentFile = os.path.realpath(os.path.join(__file__, "..", "..", "environment.json"))
+if os.path.exists(environmentFile):
+    with open(environmentFile) as file:
+        bindings = json.loads(file.read())
+
+# Replace the configuration bindings.
+module = sys.modules[__name__]
+for attribute in dir(module):
+    if not attribute.startswith("__") and isinstance(getattr(module, attribute), str):
+        for binding in bindings.keys():
+            setattr(module, attribute, getattr(module, attribute).replace("{ENV/" + binding + "}", bindings[binding]))
