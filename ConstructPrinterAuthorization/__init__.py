@@ -5,6 +5,7 @@ Registers monitoring changes to printers and materials.
 """
 
 from UM.Logger import Logger
+from UM.PluginObject import PluginObject
 
 
 def getMetaData():
@@ -23,7 +24,13 @@ def register(app):
         # The import happens here instead of above so the error for Construct Core can be caught.
         from .src.AuthorizationMonitor import AuthorizationMonitor
         AuthorizationMonitor(app)
+
+        # Return an empty PluginObject.
+        # As of Uranium for Cura 4.13, the plugin will fail to load if there is nothing registered.
+        return {
+            "empty_object": PluginObject(),
+        }
     except ImportError:
         # Log that Construct Core may be missing.
         Logger.log("e", "Module missing for loading plugin. Is Construct Core loaded?")
-    return {}
+        return {}

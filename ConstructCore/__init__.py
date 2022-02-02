@@ -8,6 +8,7 @@ import json
 import site
 import os
 from .ConstructRIT import Configuration
+from UM.PluginObject import PluginObject
 
 
 class ConstructState:
@@ -58,4 +59,9 @@ def register(app):
     # Register the ConstructRIT module.
     site.addsitedir(os.path.realpath(os.path.join(__file__, "..")))
     replaceConfigurationBindings()
-    return {}
+
+    # Return an empty PluginObject.
+    # As of Uranium for Cura 4.13, the plugin will fail to load if there is nothing registered.
+    return {
+        "empty_object": PluginObject(),
+    }
