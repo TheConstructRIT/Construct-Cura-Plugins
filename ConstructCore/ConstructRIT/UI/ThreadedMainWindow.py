@@ -19,9 +19,17 @@ class ThreadedMainWindow(QtWidgets.QMainWindow):
         """
 
         super().__init__()
+        self.selfReference = self
 
         # Connect the event.
         self.runThreadedOperationEvent.connect(self.performOperation)
+
+    def close(self) -> None:
+        """Closes the window in a thread.
+        """
+
+        self.selfReference = None
+        super().close()
 
     def closeThreaded(self) -> None:
         """Closes the window in a thread.
