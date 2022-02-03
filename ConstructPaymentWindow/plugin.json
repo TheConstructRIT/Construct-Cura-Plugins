@@ -1,0 +1,8 @@
+{
+    "name": "Construct Payment Window",
+    "author": "The Construct @ RIT",
+    "version": "1.0.0",
+    "api": 7,
+    "description": "Adds the a payment screen before exporting prints.",
+    "catalog": "constructrit"
+}
