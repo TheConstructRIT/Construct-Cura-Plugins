@@ -20,7 +20,7 @@ is used as well.
 
 ### ConstructPaymentWindow
 *Requires ConstructCore*<br>
-**Requires patches to the RemovableMediaDeviceOutput and LocalFileOutput plugins.**
+**Depends on Ultimaker/Uranium#777 and Ultimaker/Cura#11412**
 
 Adds a payment window when attempting to export .gcode and .x3g
 files for logging and payment purposes. Provides other checks, such
