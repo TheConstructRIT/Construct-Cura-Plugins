@@ -6,8 +6,8 @@ Adds the classes used by The Construct @ RIT.
 
 import os
 import site
-from .ConstructRIT import Configuration
 from UM.PluginObject import PluginObject
+from UM.PluginRegistry import PluginRegistry
 
 
 class ConstructState:
@@ -42,6 +42,7 @@ def register(app):
 
     # Return an empty PluginObject.
     # As of Uranium for Cura 4.13, the plugin will fail to load if there is nothing registered.
+    PluginRegistry.addType("empty_object", lambda _: None)
     return {
         "empty_object": PluginObject(),
     }
