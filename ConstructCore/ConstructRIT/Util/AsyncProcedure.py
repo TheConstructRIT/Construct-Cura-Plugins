@@ -58,6 +58,14 @@ class AsyncProcedureContext:
         function = self.functions.pop(0)
         threading.Thread(target=function, args=[self.selfArgument, self, *args], kwargs=kwargs).start()
 
+    def end(self, *args, **kwargs) -> None:
+        """Calls the next step of the procedure without the context argument.
+        Intended for calling a method that is not wrapped with AsyncProcedure.
+        """
+
+        function = self.functions.pop(0)
+        threading.Thread(target=function, args=[self.selfArgument, *args], kwargs=kwargs).start()
+
 
 def AsyncProcedure(function: Optional[Callable] = None) -> Callable:
     """Creates an async procedure container. Can include a base callable as the first step, or can be empty to only
