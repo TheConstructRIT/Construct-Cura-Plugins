@@ -138,6 +138,9 @@ def LogPrint(email: str, fileName: str, materialType: str, printWeight: float, p
     if hashedId is None:
         return False
 
+    # Check if this is a Senior Design print.
+    msd = printPurpose == "Senior Design Project (Reimbursed)"
+
     # Create the payload.
     arguments = {
         "hashedId": hashedId,
@@ -145,7 +148,7 @@ def LogPrint(email: str, fileName: str, materialType: str, printWeight: float, p
         "material": materialType,
         "weight": printWeight,
         "purpose": printPurpose,
-        "billTo": msdNumber,
+        "billTo": msdNumber if msd else None,
         "owed": paymentOwed,
     }
 
